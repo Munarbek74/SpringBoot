@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Все инструкторы</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <style>
+        .fcc-btn {
+            background-color: #199319;
+            color: white;
+            padding: 5px 15px;
+            font-size: 14px;
+            text-decoration: none;
+        }
+    </style>
+    <style>table,
+    td {
+        border: 1px solid #333;
+        margin-top: 20px;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 14px;
+    }
+
+    thread,
+    tfoot {
+        background-color: #333;
+        color: #fff;
+    }
+    </style>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            padding: 3px;
+        }
+    </style>
+</head>
+<body>
+<div class="container text-center">
+    <div>
+        <h1>Списки инструкторов</h1></div>
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+        <th>Номер</th>
+        <th>Имя</th>
+        <th>Фамилия</th>
+        <th>Эл.почта</th>
+        <th>№ телефона</th>
+        <th>Специализация</th>
+        <th>Курсы</th>
+        <th></th>
+        </thead>
+        <tbody>
+        <th:block th:each="inst : ${instructorList}">
+            <tr>
+                <td>[[${inst.id}]]</td>
+                <td>[[${inst.firstName}]]</td>
+                <td>[[${inst.lastName}]]</td>
+                <td>[[${inst.email}]]</td>
+                <td>[[${inst.phoneNumber}]]</td>
+                <td>[[${inst.specialization}]]</td>
+                <td>[[${inst.courses.courseName}]]</td>
+                <td></td>
+                <td>
+                    <a th:href="@{'/instructor/edit/'+${inst.id}}">Правка</a>
+                    &nbsp;
+                    <a th:href="@{'/instructor/delete/'+${inst.id}}">Удалить</a>
+                </td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+</div>
+<div class="p-2">
+    <div class="container text-left">
+        <a class="h2" th:href="@{/addInstructor}">Добавление инструктора</a>
+        <a style="margin-left: 150px" class="h2" th:href="@{/getAllCompanies}">На главную страницу</a>
+    </div>
+</body>
+</html>

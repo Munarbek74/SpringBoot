@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Все задания</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <style>
+        .fcc-btn {
+            background-color: #199319;
+            color: white;
+            padding: 5px 15px;
+            font-size: 14px;
+            text-decoration: none;
+        }
+    </style>
+    <style>table,
+    td {
+        border: 1px solid #333;
+        margin-top: 20px;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 14px;
+    }
+
+    thread,
+    tfoot {
+        background-color: #333;
+        color: #fff;
+    }
+    </style>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            padding: 3px;
+        }
+    </style>
+</head>
+<body>
+<div class="container text-center">
+    <div>
+        <h1>Списки заданий</h1></div>
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+        <th>Номер</th>
+        <th>Задания</th>
+        <th>Описание задания</th>
+        <th>Дата завершения</th>
+        <th>Урок</th>
+        </thead>
+        <tbody>
+        <th:block th:each="tas : ${taskList}">
+            <tr>
+                <td>[[${tas.id}]]</td>
+                <td>[[${tas.taskName}]]</td>
+                <td>[[${tas.taskText}]]</td>
+                <td>[[${tas.deadline}]]</td>
+                <td>[[${tas.lesson.lessonName}]]</td>
+                <td></td>
+                <td>
+                    <a th:href="@{'/task/edit/'+${tas.id}}">Правка</a>
+                    &nbsp;
+                    <a th:href="@{'/task/delete/'+${tas.id}}">Удалить</a>
+                </td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+</div>
+<div class="p-2">
+    <div class="container text-left">
+        <a class="h2" th:href="@{/addTask}">Добавление Задания</a>
+        <a style="margin-left: 150px" class="h2" th:href="@{/getAllCompanies}">На главную страницу</a>
+    </div>
+</body>
+</html>
